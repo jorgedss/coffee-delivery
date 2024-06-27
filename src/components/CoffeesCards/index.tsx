@@ -1,6 +1,7 @@
 import {
   Buttons,
   CardContainer,
+  CartButton,
   CoffeeDescription,
   CoffeeName,
   CoffeeType,
@@ -11,7 +12,7 @@ import {
   PriceAndShop,
 } from './styles'
 import cup from '../../assets/cup.svg'
-import { Minus, Plus } from 'phosphor-react'
+import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { defaultTheme } from '../../styles/themes/default'
 
 export function CoffeeCard() {
@@ -42,6 +43,9 @@ export function CoffeeCard() {
               <Plus weight="bold" size={14} color={defaultTheme.purple} />
             </Buttons>
           </Controls>
+          <CartButton>
+            <ShoppingCart weight="fill" size={22} color="white" />
+          </CartButton>
         </ControlsAndCart>
       </PriceAndShop>
     </CardContainer>

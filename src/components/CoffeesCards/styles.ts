@@ -73,18 +73,17 @@ export const Price = styled.span`
 export const ControlsAndCart = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 8.5px 8px;
-  font-size: 16px;
-  background-color: ${(props) => props.theme.button};
-  border-radius: 6px;
+  gap: 8px;
 `
 
 export const Controls = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  padding-top: 8.5px 8px;
+  padding: 8.5px 8px;
+  font-size: 16px;
+  background-color: ${(props) => props.theme.button};
+  border-radius: 6px;
 
   span {
     display: flex;
@@ -97,4 +96,16 @@ export const Controls = styled.div`
 
 export const Buttons = styled.button`
   background-color: ${(props) => props.theme.button};
+`
+export const CartButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background-color: ${(props) => props.theme['purple-dark']};
+  padding: 8px;
+
+  &:hover {
+    background-color: ${(props) => props.theme.purple};
+  }
 `
