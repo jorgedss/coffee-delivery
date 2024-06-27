@@ -56,3 +56,27 @@ export const InfoContainer = styled.div`
     gap: 5.5px;
   }
 `
+export const CoffeesList = styled.div`
+  max-width: 1120px;
+  margin: 0 auto;
+
+  h1 {
+    font-family: 'Baloo 2';
+    font-size: 32px;
+    font-weight: 800;
+
+    margin-top: 32px;
+    margin-bottom: 54px;
+  }
+`
+export const ListContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 32px;
+  row-gap: 40px;
+
+  .testando {
+    width: 50px;
+    height: 100px;
+  }
+`

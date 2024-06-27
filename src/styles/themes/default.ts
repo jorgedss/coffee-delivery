@@ -1,7 +1,7 @@
 export const defaultTheme = {
   white: '#FFFFF',
-  background: '#D7D5D5',
-  card: 'F3F2F2',
+  background: '#FAFAFA',
+  card: '#F3F2F2',
   input: '#EDEDED',
   button: '#E6E5E5',
   hover: '#D7D5D5',
