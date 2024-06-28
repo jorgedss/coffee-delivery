@@ -11,9 +11,9 @@ import {
   Price,
   PriceAndShop,
 } from './styles'
-import cup from '../../assets/cup.svg'
+import cup from '../../../assets/cup.svg'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { defaultTheme } from '../../styles/themes/default'
+import { defaultTheme } from '../../../styles/themes/default'
 
 export function CoffeeCard() {
   return (

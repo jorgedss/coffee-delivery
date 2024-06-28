@@ -8,7 +8,7 @@ import {
 import coffeImage from '../../assets/coffeeImage.svg'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { defaultTheme } from '../../styles/themes/default'
-import { CoffeeCard } from '../../components/CoffeesCards'
+import { CoffeeCard } from './CoffeesCards'
 
 export function Home() {
   return (
