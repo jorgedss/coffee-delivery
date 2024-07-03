@@ -2,51 +2,65 @@ import styled from 'styled-components'
 
 export const GeneralContainer = styled.div`
   display: flex;
-  max-width: 1120px;
-  gap: 32px;
-  margin: 40px auto 0;
-  height: 100vh;
-  span {
-    font-family: 'Baloo 2';
-    font-size: 18px;
-    font-weight: bold;
-  }
+  align-items: flex-start; //para a div de finalização de pedido não esticar
+  max-width: 1080px;
+  justify-content: space-between;
+  margin: 40px auto 40px;
+  padding-top: 78px;
+  border: 1px solid red;
 `
+// Títulos dos containers
 
-export const AddressAndPayment = styled.div`
-  max-width: 640px;
-  width: 100%;
-`
-
-export const TextStyles = styled.div`
-  h1 {
-    color: ${(props) => props.theme.subtitle};
-    font-size: 16px;
-    font-weight: 400;
-    margin-bottom: 2px;
-  }
-
-  h2 {
-    color: ${(props) => props.theme.text};
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 32px;
-  }
-`
-
-export const AddressContainer = styled(TextStyles)`
+const BaseTitle = styled.span`
+  font-family: 'Baloo 2';
+  font-weight: bold;
+  line-height: 23px;
+  font-size: 18px;
+  color: ${(props) => props.theme.subtitle};
   display: flex;
-  flex-direction: column;
-  padding: 40px;
-  background-color: ${(props) => props.theme.card};
-  border-radius: 6px;
-  margin-bottom: 12px;
+  position: absolute;
+`
 
+export const FormContainerTitle = styled(BaseTitle)`
+  margin-top: -38px;
+`
+
+export const OrderContainerTitle = styled(BaseTitle)`
+  margin-left: -40px;
+  margin-top: -78px;
+`
+
+// Container do formulário de endereço e pagamento
+
+export const FormContainer = styled.div`
   header {
     display: flex;
     gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  h1 {
+    font-weight: 400;
+    font-size: 16px;
+    color: ${(props) => props.theme.subtitle};
+  }
+
+  h2 {
+    font-weight: 400;
+    font-size: 14px;
+    color: ${(props) => props.theme.text};
   }
 `
+
+const BaseFormStyle = styled.div`
+  padding: 40px;
+  background-color: ${(props) => props.theme.card};
+  border-radius: 6px;
+  width: 640px;
+  margin-bottom: 12px;
+`
+
+export const AddressContainer = styled(BaseFormStyle)``
 
 export const AddressForm = styled.div`
   display: grid;
@@ -59,19 +73,18 @@ export const AddressForm = styled.div`
     'bairro cidade uf';
 
   input {
-    height: 42px;
+    padding: 12px;
+    font-size: 14px;
     width: 100%;
-    background-color: ${(props) => props.theme.input};
-    border: none;
     border-radius: 6px;
-    color: ${(props) => props.theme.label};
-    padding-left: 12px;
-    box-sizing: border-box;
+    border: none;
+    background-color: ${(props) => props.theme.input};
+    color: ${(props) => props.theme.text};
   }
-
   input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+
   #cep {
     grid-area: cep;
   }
@@ -93,75 +106,20 @@ export const AddressForm = styled.div`
   #uf {
     grid-area: uf;
   }
-
-  :focus {
-    border: 2px solid ${(props) => props.theme['yellow-dark']};
-  }
 `
 
-export const PaymentContainer = styled(TextStyles)`
-  padding: 40px;
-  background-color: ${(props) => props.theme.card};
-  border-radius: 6px;
-
-  header {
-    display: flex;
-    gap: 8px;
-  }
-`
-
-export const ButtonsPayment = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 12px;
-`
-export const ButtonPayment = styled.label`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-
-  border-radius: 6px;
-  background-color: ${(props) => props.theme.button};
-
-  height: 51px;
-  width: 178.67px;
-
-  font-family: 'Roboto mono';
-  font-size: 12px;
-  color: ${(props) => props.theme.text};
-
-  &:hover {
-    background-color: ${(props) => props.theme.hover};
-  }
-
-  input {
-    display: none;
-  }
-
-  &.teste {
-    border: 1px solid red;
-  }
-
-  .selected {
-    border: ${(props) => props.theme.purple};
-    background-color: ${(props) => props.theme['purple-light']};
-  }
-`
-
-export const CheckContainer = styled.div`
-  max-width: 448px;
-  width: 100%;
-`
-export const FinishOrder = styled.div`
+export const PaymentChoice = styled(BaseFormStyle)`
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.theme.card};
-  border-radius: 6px;
 `
-export const Order = styled.section`
+
+// Order container
+export const OrderContainer = styled.div`
   display: flex;
-  img {
-    margin-right: 20px;
-  }
+  flex-direction: column;
+  max-width: 408px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 6px 36px;
+  background-color: ${(props) => props.theme.card};
 `
