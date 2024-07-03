@@ -1,5 +1,5 @@
 // import { Bank, CreditCard, CurrencyDollar, MapPin, Money } from 'phosphor-react'
-import { CurrencyDollar, MapPin } from 'phosphor-react'
+import { Bank, CreditCard, CurrencyDollar, MapPin } from 'phosphor-react'
 import {
   AddressContainer,
   AddressForm,
@@ -9,9 +9,10 @@ import {
   OrderContainer,
   OrderContainerTitle,
   PaymentChoice,
+  PaymentChoiceButton,
+  PaymentContainer,
 } from './styles'
 import { defaultTheme } from '../../styles/themes/default'
-// import { defaultTheme } from '../../styles/themes/default'
 
 export function Checkout() {
   return (
@@ -39,7 +40,7 @@ export function Checkout() {
             </AddressForm>
           </AddressContainer>
 
-          <PaymentChoice>
+          <PaymentContainer>
             <header>
               <CurrencyDollar size={22} color={defaultTheme.purple} />
               <div>
@@ -50,7 +51,43 @@ export function Checkout() {
                 </h2>
               </div>
             </header>
-          </PaymentChoice>
+
+            <PaymentChoice>
+              <PaymentChoiceButton>
+                <input
+                  type="radio"
+                  id="credit"
+                  name="payment"
+                  value="creditCard"
+                />
+                <label htmlFor="credit">
+                  <CreditCard size={16} color={defaultTheme.purple} />
+                  CARTÃO DE CRÉDITO
+                </label>
+              </PaymentChoiceButton>
+
+              <PaymentChoiceButton>
+                <input
+                  type="radio"
+                  id="debit"
+                  name="payment"
+                  value="debitCard"
+                />
+                <label htmlFor="debit">
+                  <Bank size={16} color={defaultTheme.purple} />
+                  CARTÃO DE DÉBITO
+                </label>
+              </PaymentChoiceButton>
+
+              <PaymentChoiceButton>
+                <input type="radio" id="money" name="payment" value="money" />
+                <label htmlFor="money">
+                  <CurrencyDollar size={16} color={defaultTheme.purple} />
+                  CARTÃO DE CRÉDITO
+                </label>
+              </PaymentChoiceButton>
+            </PaymentChoice>
+          </PaymentContainer>
         </form>
       </FormContainer>
 
