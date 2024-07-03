@@ -13,7 +13,6 @@ import {
 } from './styles'
 import cup from '../../../assets/cup.svg'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { defaultTheme } from '../../../styles/themes/default'
 
 export function CoffeeCard() {
   return (
@@ -36,11 +35,11 @@ export function CoffeeCard() {
         <ControlsAndCart>
           <Controls>
             <Buttons>
-              <Minus weight="bold" size={14} color={defaultTheme.purple} />
+              <Minus weight="bold" size={14} />
             </Buttons>
             <span>1</span>
             <Buttons>
-              <Plus weight="bold" size={14} color={defaultTheme.purple} />
+              <Plus weight="bold" size={14} />
             </Buttons>
           </Controls>
           <CartButton>

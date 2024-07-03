@@ -95,7 +95,14 @@ export const Controls = styled.div`
 `
 
 export const Buttons = styled.button`
+  display: flex;
+  align-items: center;
   background-color: ${(props) => props.theme.button};
+  color: ${(props) => props.theme.purple};
+
+  &:hover {
+    color: ${(props) => props.theme['purple-dark']};
+  }
 `
 export const CartButton = styled.button`
   display: flex;
