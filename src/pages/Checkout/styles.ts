@@ -7,7 +7,6 @@ export const GeneralContainer = styled.div`
   justify-content: space-between;
   margin: 40px auto 40px;
   padding-top: 78px;
-  border: 1px solid red;
 `
 // Títulos dos containers
 
@@ -163,4 +162,67 @@ export const OrderContainer = styled.div`
   padding: 40px;
   border-radius: 6px 36px;
   background-color: ${(props) => props.theme.card};
+`
+export const ValuesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 12px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .values {
+    color: ${(props) => props.theme.text};
+    font-size: 16px;
+  }
+  .total {
+    color: ${(props) => props.theme.subtitle};
+    font-size: 20px;
+    font-weight: bold;
+  }
+`
+
+export const ConfirmButton = styled.button`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  border-radius: 6px;
+
+  font-weight: bold;
+  color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme.yellow};
+
+  &:hover {
+    background-color: ${(props) => props.theme['yellow-dark']};
+    transition: 0.2s;
+  }
+`
+
+export const CoffeesSelecteds = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-height: 256px;
+  overflow: auto;
+  gap: 24px;
+  margin-bottom: 24px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${(props) => props.theme.button};
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.label};
+    border-radius: 5px;
+  }
 `

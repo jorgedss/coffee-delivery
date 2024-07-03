@@ -3,16 +3,20 @@ import { Bank, CreditCard, CurrencyDollar, MapPin } from 'phosphor-react'
 import {
   AddressContainer,
   AddressForm,
+  ConfirmButton,
   FormContainer,
   FormContainerTitle,
   GeneralContainer,
   OrderContainer,
   OrderContainerTitle,
+  CoffeesSelecteds,
   PaymentChoice,
   PaymentChoiceButton,
   PaymentContainer,
+  ValuesContainer,
 } from './styles'
 import { defaultTheme } from '../../styles/themes/default'
+import { Order } from './Orders'
 
 export function Checkout() {
   return (
@@ -92,7 +96,27 @@ export function Checkout() {
       </FormContainer>
 
       <OrderContainer>
-        <OrderContainerTitle> Cafés selecionados</OrderContainerTitle>
+        <form action="submit">
+          <OrderContainerTitle> Cafés selecionados</OrderContainerTitle>
+          <CoffeesSelecteds>
+            <Order />
+            <Order />
+          </CoffeesSelecteds>
+
+          <ValuesContainer>
+            <div className="values">
+              Total de itens <span>R$ 29,70</span>
+            </div>
+            <div className="values">
+              Entrega <span>R$ 3,50</span>
+            </div>
+            <div className="total">
+              Total <span>R$ 33,20</span>
+            </div>
+          </ValuesContainer>
+
+          <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
+        </form>
       </OrderContainer>
     </GeneralContainer>
   )

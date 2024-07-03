@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
   background-image: url('src/assets/Background.svg');
-  background-size: cover;
+  background-size: auto;
   height: 544px;
 
   .general {

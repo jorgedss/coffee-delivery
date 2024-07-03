@@ -1,5 +1,5 @@
 export const defaultTheme = {
-  white: '#FFFFF',
+  white: '#FFFFFF',
   background: '#FAFAFA',
   card: '#F3F2F2',
   input: '#EDEDED',
