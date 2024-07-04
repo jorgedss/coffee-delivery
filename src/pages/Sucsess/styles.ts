@@ -46,6 +46,7 @@ export const BackgroundDiv = styled.div`
   align-items: center;
   width: 526px;
   height: 270px;
+  padding: 1px;
   border-radius: 6px 36px;
   background-image: linear-gradient(#dbac2c, #8047f8);
 `
