@@ -80,6 +80,10 @@ export const AddressForm = styled.div`
     background-color: ${(props) => props.theme.input};
     color: ${(props) => props.theme.text};
   }
+  input:focus {
+    border: 1px solid ${(props) => props.theme['yellow-dark']};
+  }
+
   input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
