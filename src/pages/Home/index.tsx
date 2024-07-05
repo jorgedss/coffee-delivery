@@ -10,6 +10,8 @@ import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { defaultTheme } from '../../styles/themes/default'
 import { CoffeeCard } from './CoffeesCards'
 
+import { coffeeFlavors } from '../../Data/coffeesList'
+
 export function Home() {
   return (
     <div>
@@ -71,7 +73,14 @@ export function Home() {
       <CoffeesList>
         <h1>Nossos cafés</h1>
         <ListContainer>
-          <CoffeeCard />
+          <CoffeeCard
+            id={coffeeFlavors[0].id}
+            name={coffeeFlavors[0].name}
+            typeOfCoffee={coffeeFlavors[0].typeOfCoffee}
+            description={coffeeFlavors[0].description}
+            price={coffeeFlavors[0].price}
+            picture={coffeeFlavors[0].picture}
+          />
         </ListContainer>
       </CoffeesList>
     </div>

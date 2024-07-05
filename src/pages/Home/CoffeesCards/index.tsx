@@ -11,25 +11,38 @@ import {
   Price,
   PriceAndShop,
 } from './styles'
-import cup from '../../../assets/cup.svg'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 
-export function CoffeeCard() {
+type CoffeeFlavorsTypes = {
+  id: number
+  name: string
+  typeOfCoffee: string
+  description: string
+  price: number
+  picture: string
+}
+
+export function CoffeeCard({
+  // id,
+  name,
+  typeOfCoffee,
+  description,
+  price,
+  picture,
+}: CoffeeFlavorsTypes) {
   return (
     <CardContainer>
-      <CupImage src={cup} />
+      <CupImage src={picture} />
 
-      <CoffeeType> TRADICIONAL </CoffeeType>
+      <CoffeeType> {typeOfCoffee} </CoffeeType>
 
-      <CoffeeName>Expresso Tradicional</CoffeeName>
+      <CoffeeName>{name}</CoffeeName>
 
-      <CoffeeDescription>
-        O tradicional café feito com água quente e grãos moídos
-      </CoffeeDescription>
+      <CoffeeDescription>{description}</CoffeeDescription>
 
       <PriceAndShop>
         <div>
-          R$ <Price> 9,90</Price>
+          R$ <Price> {price.toFixed(2).toString().replace('.', ',')}</Price>
         </div>
 
         <ControlsAndCart>

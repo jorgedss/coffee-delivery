@@ -16,4 +16,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  "rules": {
+    "no-floating-decimal": "off"
+  }
 }
