@@ -17,6 +17,11 @@ export const CardContainer = styled.div`
   align-items: center;
 
   padding: 0 20px 20px;
+
+  .container {
+    display: flex;
+    gap: 4px;
+  }
 `
 
 export const CupImage = styled.img`

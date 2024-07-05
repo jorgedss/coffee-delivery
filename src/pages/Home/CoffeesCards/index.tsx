@@ -16,7 +16,7 @@ import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 type CoffeeFlavorsTypes = {
   id: number
   name: string
-  typeOfCoffee: string
+  typeOfCoffee: string[]
   description: string
   price: number
   picture: string
@@ -34,7 +34,11 @@ export function CoffeeCard({
     <CardContainer>
       <CupImage src={picture} />
 
-      <CoffeeType> {typeOfCoffee} </CoffeeType>
+      <div className="container">
+        {typeOfCoffee.map((coffee) => (
+          <CoffeeType key={coffee}> {coffee.toUpperCase()} </CoffeeType>
+        ))}
+      </div>
 
       <CoffeeName>{name}</CoffeeName>
 

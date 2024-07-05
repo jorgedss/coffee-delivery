@@ -13,6 +13,10 @@ import { CoffeeCard } from './CoffeesCards'
 import { coffeeFlavors } from '../../Data/coffeesList'
 
 export function Home() {
+  const teste = coffeeFlavors
+
+  console.log(teste)
+
   return (
     <div>
       <HomeContainer>
