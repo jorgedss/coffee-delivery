@@ -13,10 +13,6 @@ import { CoffeeCard } from './CoffeesCards'
 import { coffeeFlavors } from '../../Data/coffeesList'
 
 export function Home() {
-  const teste = coffeeFlavors
-
-  console.log(teste)
-
   return (
     <div>
       <HomeContainer>
@@ -77,14 +73,26 @@ export function Home() {
       <CoffeesList>
         <h1>Nossos cafés</h1>
         <ListContainer>
-          <CoffeeCard
+          {coffeeFlavors.map((coffee) => (
+            <CoffeeCard
+              key={Date()}
+              id={coffee.id}
+              name={coffee.name}
+              typeOfCoffee={coffee.typeOfCoffee}
+              description={coffee.description}
+              price={coffee.price}
+              picture={coffee.picture}
+            />
+          ))}
+
+          {/* <CoffeeCard
             id={coffeeFlavors[0].id}
             name={coffeeFlavors[0].name}
             typeOfCoffee={coffeeFlavors[0].typeOfCoffee}
             description={coffeeFlavors[0].description}
             price={coffeeFlavors[0].price}
             picture={coffeeFlavors[0].picture}
-          />
+          /> */}
         </ListContainer>
       </CoffeesList>
     </div>
