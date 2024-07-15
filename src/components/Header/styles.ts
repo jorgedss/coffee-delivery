@@ -2,14 +2,25 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  padding: 2rem 0;
-  margin: 0 auto;
-  max-width: 1120px;
+  width: 100%;
+  height: 104px;
+  background-color: ${(props) => props.theme.background};
+  position: sticky;
+  top: 0;
+  z-index: 10;
 
-  div {
+  .container {
+    max-width: 1120px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .localAndCart {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 12px;
     height: 38px;

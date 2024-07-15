@@ -10,19 +10,21 @@ export function Header() {
 
   return (
     <HeaderContainer>
-      <a href="/">
-        <img src={logoCoffeeDelivery} alt="" />
-      </a>
+      <div className="container">
+        <a href="/">
+          <img src={logoCoffeeDelivery} alt="" />
+        </a>
 
-      <div>
-        <div className="local">
-          <MapPin size={22} weight="fill" color="#8047F8" />
-          <span> João Pessoa, PB </span>
+        <div className="localAndCart">
+          <div className="local">
+            <MapPin size={22} weight="fill" color="#8047F8" />
+            <span> João Pessoa, PB </span>
+          </div>
+          <NavLink to="/checkout" id="cart">
+            <ShoppingCart size={22} weight="fill" color="#C47F17" />
+            {cartQuantity > 0 && <span id="quantity"> {cartQuantity} </span>}
+          </NavLink>
         </div>
-        <NavLink to="/checkout" id="cart">
-          <ShoppingCart size={22} weight="fill" color="#C47F17" />
-          {cartQuantity > 0 && <span id="quantity"> {cartQuantity} </span>}
-        </NavLink>
       </div>
     </HeaderContainer>
   )
