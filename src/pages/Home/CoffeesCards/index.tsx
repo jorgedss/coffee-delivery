@@ -1,3 +1,4 @@
+import { useContext, useState } from 'react'
 import {
   Buttons,
   CardContainer,
@@ -12,8 +13,9 @@ import {
   PriceAndShop,
 } from './styles'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { CartContext } from '../../../context/CartContext'
 
-type CoffeeFlavorsTypes = {
+export interface CoffeeFlavorsTypes {
   id: number
   name: string
   typeOfCoffee: string[]
@@ -22,44 +24,63 @@ type CoffeeFlavorsTypes = {
   picture: string
 }
 
-export function CoffeeCard({
-  // id,
-  name,
-  typeOfCoffee,
-  description,
-  price,
-  picture,
-}: CoffeeFlavorsTypes) {
+interface CoffeeProps {
+  coffee: CoffeeFlavorsTypes
+}
+
+export function CoffeeCard({ coffee }: CoffeeProps) {
+  const [quantity, setQuantity] = useState(1)
+
+  const { addCoffeeToCart } = useContext(CartContext)
+
+  function incrementQuantity() {
+    setQuantity(quantity + 1)
+  }
+
+  function decrementQuantity() {
+    setQuantity(quantity - 1)
+  }
+
+  function handleAddToCart() {
+    const coffeeToAdd = {
+      ...coffee,
+      quantity, // adiciona o valo da quantidade armazenada no estado
+    }
+    addCoffeeToCart(coffeeToAdd)
+    console.log('deu certo')
+  }
+
   return (
     <CardContainer>
-      <CupImage src={picture} />
+      <CupImage src={coffee.picture} />
 
       <div className="container">
-        {typeOfCoffee.map((coffee) => (
+        {coffee.typeOfCoffee.map((coffee) => (
           <CoffeeType key={coffee}> {coffee.toUpperCase()} </CoffeeType>
         ))}
       </div>
 
-      <CoffeeName>{name}</CoffeeName>
+      <CoffeeName>{coffee.name}</CoffeeName>
 
-      <CoffeeDescription>{description}</CoffeeDescription>
+      <CoffeeDescription>{coffee.description}</CoffeeDescription>
 
       <PriceAndShop>
         <div>
-          R$ <Price> {price.toFixed(2).toString().replace('.', ',')}</Price>
+          R$
+          <Price> {coffee.price.toFixed(2).toString().replace('.', ',')}</Price>
         </div>
 
         <ControlsAndCart>
           <Controls>
-            <Buttons>
+            <Buttons onClick={decrementQuantity} disabled={quantity < 2}>
               <Minus weight="bold" size={14} />
             </Buttons>
-            <span>1</span>
-            <Buttons>
+            <span>{quantity}</span>
+            <Buttons onClick={incrementQuantity}>
               <Plus weight="bold" size={14} />
             </Buttons>
           </Controls>
-          <CartButton>
+          <CartButton onClick={handleAddToCart}>
             <ShoppingCart weight="fill" size={22} color="white" />
           </CartButton>
         </ControlsAndCart>
