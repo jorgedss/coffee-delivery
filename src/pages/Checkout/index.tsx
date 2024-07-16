@@ -138,7 +138,7 @@ export function Checkout() {
             </div>
           </ValuesContainer>
 
-          <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
+          <ConfirmButton type="submit">CONFIRMAR PEDIDO</ConfirmButton>
         </form>
       </OrderContainer>
     </GeneralContainer>
