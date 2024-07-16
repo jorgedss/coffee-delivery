@@ -17,11 +17,17 @@ import {
 } from './styles'
 import { defaultTheme } from '../../styles/themes/default'
 import { Order } from './Orders'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CartContext, CartItem } from '../../context/CartContext'
 
 export function Checkout() {
   const { cartItems } = useContext(CartContext)
+
+  const [inputValue, setInputValue] = useState('')
+
+  function handleChangeInputValue(event: React.ChangeEvent<HTMLInputElement>) {
+    setInputValue(event.target.value)
+  }
 
   function totalPrice(cartItem: CartItem[]) {
     let totalSum = 0
@@ -48,7 +54,20 @@ export function Checkout() {
               <input id="cep" type="number" placeholder="CEP" required />
               <input id="rua" type="text" placeholder="Rua" required />
               <input id="numero" type="number" placeholder="Número" required />
-              <input id="complemento" type="text" placeholder="Complemento" />
+              <div id="complemento">
+                <input
+                  value={inputValue}
+                  type="text"
+                  placeholder="Complemento"
+                  onChange={handleChangeInputValue}
+                />
+                {inputValue.length === 0 && (
+                  <label className="optionalInput" htmlFor="complementoInput">
+                    Opcional
+                  </label>
+                )}
+              </div>
+
               <input id="bairro" type="text" placeholder="Bairro" required />
               <input id="cidade" type="text" placeholder="Cidade" required />
               <input id="uf" type="text" placeholder="UF" required />

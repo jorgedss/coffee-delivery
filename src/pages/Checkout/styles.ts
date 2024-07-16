@@ -84,10 +84,21 @@ export const AddressForm = styled.div`
     border: 1px solid ${(props) => props.theme['yellow-dark']};
   }
 
+  label {
+    position: absolute;
+  }
+
   input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
 
+  .optionalInput {
+    font-size: 12px;
+    font-style: italic;
+    color: ${(props) => props.theme.label};
+    top: 13px;
+    right: 12px;
+  }
   #cep {
     grid-area: cep;
   }
@@ -99,6 +110,9 @@ export const AddressForm = styled.div`
   }
   #complemento {
     grid-area: complemento;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
   }
   #bairro {
     grid-area: bairro;
