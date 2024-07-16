@@ -17,8 +17,19 @@ import {
 } from './styles'
 import { defaultTheme } from '../../styles/themes/default'
 import { Order } from './Orders'
+import { useContext } from 'react'
+import { CartContext, CartItem } from '../../context/CartContext'
 
 export function Checkout() {
+  const { cartItems } = useContext(CartContext)
+
+  function totalPrice(cartItem: CartItem[]) {
+    let totalSum = 0
+
+    cartItem.map((item) => (totalSum += item.price * item.quantity))
+    return totalSum
+  }
+
   return (
     <GeneralContainer>
       <FormContainer>
@@ -99,19 +110,31 @@ export function Checkout() {
         <form action="submit">
           <OrderContainerTitle> Cafés selecionados</OrderContainerTitle>
           <CoffeesSelecteds>
-            <Order />
-            <Order />
+            {cartItems.map((item) => (
+              <Order key={item.id} coffee={item} />
+            ))}
           </CoffeesSelecteds>
 
           <ValuesContainer>
             <div className="values">
-              Total de itens <span>R$ 29,70</span>
+              Total de itens{' '}
+              <span>
+                R${' '}
+                {totalPrice(cartItems).toFixed(2).toString().replace('.', ',')}
+              </span>
             </div>
             <div className="values">
               Entrega <span>R$ 3,50</span>
             </div>
             <div className="total">
-              Total <span>R$ 33,20</span>
+              Total
+              <span>
+                R${' '}
+                {(totalPrice(cartItems) + 3.5)
+                  .toFixed(2)
+                  .toString()
+                  .replace('.', ',')}
+              </span>
             </div>
           </ValuesContainer>
 

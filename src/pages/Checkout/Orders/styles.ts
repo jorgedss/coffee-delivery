@@ -82,6 +82,11 @@ export const TrashButton = styled(ButtonStyle)`
     font-size: 12px;
   }
 
+  button {
+    display: flex;
+    gap: 4px;
+  }
+
   &:hover {
     background-color: ${(props) => props.theme.hover};
 
@@ -89,7 +94,7 @@ export const TrashButton = styled(ButtonStyle)`
       color: ${(props) => props.theme.subtitle};
     }
 
-    button {
+    svg {
       color: ${(props) => props.theme['purple-dark']};
     }
   }

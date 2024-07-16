@@ -47,7 +47,6 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
       quantity, // adiciona o valo da quantidade armazenada no estado
     }
     addCoffeeToCart(coffeeToAdd)
-    console.log('deu certo')
   }
 
   return (

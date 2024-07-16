@@ -30,8 +30,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 0 8px;
-
+    padding: 8px;
     color: ${(props) => props.theme['purple-dark']};
     background-color: ${(props) => props.theme['purple-light']};
     border-radius: 6px;
