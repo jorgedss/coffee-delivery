@@ -62,9 +62,7 @@ export function Checkout() {
                   onChange={handleChangeInputValue}
                 />
                 {inputValue.length === 0 && (
-                  <label className="optionalInput" htmlFor="complementoInput">
-                    Opcional
-                  </label>
+                  <span className="optionalInput">Opcional</span>
                 )}
               </div>
 
