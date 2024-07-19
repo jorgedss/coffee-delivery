@@ -167,7 +167,7 @@ export const PaymentChoiceButton = styled(PaymentChoice)`
 `
 
 // Order container
-export const OrderContainer = styled.form`
+export const OrderContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 408px;

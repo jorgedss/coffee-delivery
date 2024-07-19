@@ -19,10 +19,29 @@ import { defaultTheme } from '../../styles/themes/default'
 import { Order } from './Orders'
 import { useContext, useState } from 'react'
 import { CartContext, CartItem } from '../../context/CartContext'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import * as zod from 'zod'
+
+const confirmOrderFormValidationSchema = zod.object({
+  bairro: zod.string(),
+  cep: zod.string().max(8),
+  cidade: zod.string(),
+  complemento: zod.string(),
+  numero: zod.number(),
+  payment: zod.string(),
+  rua: zod.string(),
+  uf: zod.string().max(2),
+})
+
+export type OrderData = zod.infer<typeof confirmOrderFormValidationSchema>
+
+type ConfirmOrderData = OrderData
 
 export function Checkout() {
-  const { cartItems } = useContext(CartContext)
+  const { register, handleSubmit } = useForm<ConfirmOrderData>()
 
+  const { cartItems } = useContext(CartContext)
   const [inputValue, setInputValue] = useState('')
 
   function handleChangeInputValue(event: React.ChangeEvent<HTMLInputElement>) {
@@ -36,11 +55,22 @@ export function Checkout() {
     return totalSum
   }
 
+  const navigate = useNavigate()
+
+  function handleAddressForm(data: ConfirmOrderData) {
+    if (!data.payment) {
+      alert('Por favor, escolha um método de pagamento.')
+    }
+
+    navigate('/sucsess', { state: data })
+  }
+
   return (
-    <GeneralContainer>
-      <FormContainer>
-        <FormContainerTitle> Complete seu pedido</FormContainerTitle>
-        <form action="">
+    <form onSubmit={handleSubmit(handleAddressForm)}>
+      <GeneralContainer>
+        <FormContainer>
+          <FormContainerTitle> Complete seu pedido</FormContainerTitle>
+
           <AddressContainer>
             <header>
               <MapPin size={22} color={defaultTheme['yellow-dark']} />
@@ -51,24 +81,55 @@ export function Checkout() {
             </header>
 
             <AddressForm>
-              <input id="cep" type="number" placeholder="CEP" required />
-              <input id="rua" type="text" placeholder="Rua" required />
-              <input id="numero" type="number" placeholder="Número" required />
+              <input id="cep" placeholder="CEP" required {...register('cep')} />
+              <input
+                id="rua"
+                type="text"
+                placeholder="Rua"
+                required
+                {...register('rua')}
+              />
+              <input
+                id="numero"
+                type="number"
+                placeholder="Número"
+                required
+                {...register('numero')}
+              />
               <div id="complemento">
                 <input
                   value={inputValue}
                   type="text"
                   placeholder="Complemento"
-                  onChange={handleChangeInputValue}
+                  {...(register('complemento'),
+                  { onChange: handleChangeInputValue })}
                 />
                 {inputValue.length === 0 && (
                   <span className="optionalInput">Opcional</span>
                 )}
               </div>
 
-              <input id="bairro" type="text" placeholder="Bairro" required />
-              <input id="cidade" type="text" placeholder="Cidade" required />
-              <input id="uf" type="text" placeholder="UF" required />
+              <input
+                id="bairro"
+                type="text"
+                placeholder="Bairro"
+                required
+                {...register('bairro')}
+              />
+              <input
+                id="cidade"
+                type="text"
+                placeholder="Cidade"
+                required
+                {...register('cidade')}
+              />
+              <input
+                id="uf"
+                type="text"
+                placeholder="UF"
+                required
+                {...register('uf')}
+              />
             </AddressForm>
           </AddressContainer>
 
@@ -89,8 +150,8 @@ export function Checkout() {
                 <input
                   type="radio"
                   id="credit"
-                  name="payment"
-                  value="creditCard"
+                  value="Cartão de crédito"
+                  {...register('payment')}
                 />
                 <label htmlFor="credit">
                   <CreditCard size={16} color={defaultTheme.purple} />
@@ -102,8 +163,8 @@ export function Checkout() {
                 <input
                   type="radio"
                   id="debit"
-                  name="payment"
-                  value="debitCard"
+                  value="Cartão de débito"
+                  {...register('payment')}
                 />
                 <label htmlFor="debit">
                   <Bank size={16} color={defaultTheme.purple} />
@@ -112,19 +173,23 @@ export function Checkout() {
               </PaymentChoiceButton>
 
               <PaymentChoiceButton>
-                <input type="radio" id="money" name="payment" value="money" />
+                <input
+                  type="radio"
+                  id="money"
+                  value="Dinheiro"
+                  {...register('payment')}
+                />
                 <label htmlFor="money">
                   <CurrencyDollar size={16} color={defaultTheme.purple} />
-                  CARTÃO DE CRÉDITO
+                  DINHEIRO
                 </label>
               </PaymentChoiceButton>
+              {}
             </PaymentChoice>
           </PaymentContainer>
-        </form>
-      </FormContainer>
+        </FormContainer>
 
-      <OrderContainer>
-        <form action="submit">
+        <OrderContainer>
           <OrderContainerTitle> Cafés selecionados</OrderContainerTitle>
           <CoffeesSelecteds>
             {cartItems.map((item) => (
@@ -156,8 +221,8 @@ export function Checkout() {
           </ValuesContainer>
 
           <ConfirmButton type="submit">CONFIRMAR PEDIDO</ConfirmButton>
-        </form>
-      </OrderContainer>
-    </GeneralContainer>
+        </OrderContainer>
+      </GeneralContainer>
+    </form>
   )
 }

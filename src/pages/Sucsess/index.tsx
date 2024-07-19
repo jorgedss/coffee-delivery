@@ -2,8 +2,17 @@ import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import { BackgroundDiv, Confirmation, Container, Infos, Info } from './styles'
 import deliveryman from '../../assets/deliveryman.svg'
 import { defaultTheme } from '../../styles/themes/default'
+import { useLocation } from 'react-router-dom'
+import { OrderData } from '../Checkout'
+
+interface LocationType {
+  state: OrderData
+}
 
 export function Sucsess() {
+  const { state } = useLocation() as LocationType
+  console.log(state)
+
   return (
     <Container>
       <Confirmation id="confirmation">
@@ -21,8 +30,10 @@ export function Sucsess() {
               style={{ backgroundColor: defaultTheme.purple }}
             />
             <div>
-              Entrega em Rua João Daniel Martinelli, 102 <br />
-              <span> Farrapos - Porto Alegre, RS </span>
+              Entrega em {state.rua}, {state.numero} <br />
+              <span>
+                {state.bairro} - {state.cidade}, {state.uf}{' '}
+              </span>
             </div>
           </Info>
           <Info>
@@ -45,7 +56,7 @@ export function Sucsess() {
             />
             <div>
               Pagamento na entrega <br />
-              <span>Cartão de Crédito</span>
+              <span>{state.payment}</span>
             </div>
           </Info>
         </Infos>
