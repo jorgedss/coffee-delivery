@@ -39,7 +39,8 @@ export type OrderData = zod.infer<typeof confirmOrderFormValidationSchema>
 type ConfirmOrderData = OrderData
 
 export function Checkout() {
-  const { register, handleSubmit } = useForm<ConfirmOrderData>()
+  const { register, handleSubmit, setValue, setFocus } =
+    useForm<ConfirmOrderData>()
 
   const { cartItems } = useContext(CartContext)
   const [inputValue, setInputValue] = useState('')
@@ -64,6 +65,20 @@ export function Checkout() {
 
     navigate('/sucsess', { state: data })
   }
+  const checkCEP = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const cep = event.target.value.replace(/\D/g, '')
+    console.log(cep)
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setValue('rua', data.logradouro)
+        setValue('cidade', data.localidade)
+        setValue('bairro', data.bairro)
+        setValue('uf', data.uf)
+        setFocus('numero')
+      })
+  }
 
   return (
     <form onSubmit={handleSubmit(handleAddressForm)}>
@@ -81,7 +96,13 @@ export function Checkout() {
             </header>
 
             <AddressForm>
-              <input id="cep" placeholder="CEP" required {...register('cep')} />
+              <input
+                id="cep"
+                placeholder="CEP"
+                required
+                {...register('cep')}
+                onBlur={checkCEP}
+              />
               <input
                 id="rua"
                 type="text"
