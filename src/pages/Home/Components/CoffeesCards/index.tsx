@@ -13,7 +13,7 @@ import {
   PriceAndShop,
 } from './styles'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { CartContext } from '../../../context/CartContext'
+import { CartContext } from '../../../../context/CartContext'
 
 export interface CoffeeFlavorsTypes {
   id: number

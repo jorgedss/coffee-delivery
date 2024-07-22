@@ -1,6 +1,6 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { InfoContainer, IntroContainerStyle } from './styles'
-import { defaultTheme } from '../../../styles/themes/default'
+import { defaultTheme } from '../../../../styles/themes/default'
 
 export function IntroContainer() {
   return (
