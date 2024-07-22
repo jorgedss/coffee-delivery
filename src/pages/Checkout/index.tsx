@@ -2,7 +2,6 @@
 import { Bank, CreditCard, CurrencyDollar, MapPin } from 'phosphor-react'
 import {
   AddressContainer,
-  AddressForm,
   ConfirmButton,
   FormContainer,
   FormContainerTitle,
@@ -17,21 +16,22 @@ import {
 } from './styles'
 import { defaultTheme } from '../../styles/themes/default'
 import { Order } from './Orders'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { CartContext, CartItem } from '../../context/CartContext'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import * as zod from 'zod'
+import { AddressForm } from '../Checkout/AddressForm/index'
 
 const confirmOrderFormValidationSchema = zod.object({
   bairro: zod.string(),
-  cep: zod.string().max(8),
+  cep: zod.string(),
   cidade: zod.string(),
   complemento: zod.string(),
   numero: zod.number(),
   payment: zod.string(),
   rua: zod.string(),
-  uf: zod.string().max(2),
+  uf: zod.string(),
 })
 
 export type OrderData = zod.infer<typeof confirmOrderFormValidationSchema>
@@ -43,11 +43,6 @@ export function Checkout() {
     useForm<ConfirmOrderData>()
 
   const { cartItems } = useContext(CartContext)
-  const [inputValue, setInputValue] = useState('')
-
-  function handleChangeInputValue(event: React.ChangeEvent<HTMLInputElement>) {
-    setInputValue(event.target.value)
-  }
 
   function totalPrice(cartItem: CartItem[]) {
     let totalSum = 0
@@ -65,20 +60,6 @@ export function Checkout() {
 
     navigate('/sucsess', { state: data })
   }
-  const checkCEP = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const cep = event.target.value.replace(/\D/g, '')
-    console.log(cep)
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        setValue('rua', data.logradouro)
-        setValue('cidade', data.localidade)
-        setValue('bairro', data.bairro)
-        setValue('uf', data.uf)
-        setFocus('numero')
-      })
-  }
 
   return (
     <form onSubmit={handleSubmit(handleAddressForm)}>
@@ -95,63 +76,11 @@ export function Checkout() {
               </div>
             </header>
 
-            <AddressForm>
-              <input
-                id="cep"
-                placeholder="CEP"
-                required
-                {...register('cep')}
-                onBlur={checkCEP}
-              />
-              <input
-                id="rua"
-                type="text"
-                placeholder="Rua"
-                required
-                {...register('rua')}
-              />
-              <input
-                id="numero"
-                type="number"
-                placeholder="Número"
-                required
-                {...register('numero')}
-              />
-              <div id="complemento">
-                <input
-                  value={inputValue}
-                  type="text"
-                  placeholder="Complemento"
-                  {...(register('complemento'),
-                  { onChange: handleChangeInputValue })}
-                />
-                {inputValue.length === 0 && (
-                  <span className="optionalInput">Opcional</span>
-                )}
-              </div>
-
-              <input
-                id="bairro"
-                type="text"
-                placeholder="Bairro"
-                required
-                {...register('bairro')}
-              />
-              <input
-                id="cidade"
-                type="text"
-                placeholder="Cidade"
-                required
-                {...register('cidade')}
-              />
-              <input
-                id="uf"
-                type="text"
-                placeholder="UF"
-                required
-                {...register('uf')}
-              />
-            </AddressForm>
+            <AddressForm
+              setValue={setValue}
+              setFocus={setFocus}
+              register={register}
+            />
           </AddressContainer>
 
           <PaymentContainer>

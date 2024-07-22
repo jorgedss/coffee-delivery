@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
-import { CoffeeFlavorsTypes } from '../pages/Home/CoffeesCards'
+import { CoffeeFlavorsTypes } from '../pages/Home/Components/CoffeesCards'
 import { produce } from 'immer'
 
 export interface CartItem extends CoffeeFlavorsTypes {
