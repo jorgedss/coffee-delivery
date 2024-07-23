@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
 
 export function Header() {
-  const { cartQuantity } = useContext(CartContext)
+  const { cartQuantity, location } = useContext(CartContext)
 
   return (
     <HeaderContainer>
@@ -18,8 +18,14 @@ export function Header() {
         <div className="localAndCart">
           <div className="local">
             <MapPin size={22} weight="fill" color="#8047F8" />
-            <span> João Pessoa, PB </span>
+
+            {location.city && (
+              <span>
+                {location.city}, {location.state}
+              </span>
+            )}
           </div>
+
           <NavLink to="/checkout" id="cart">
             <ShoppingCart size={22} weight="fill" color="#C47F17" />
             {cartQuantity > 0 && <span id="quantity"> {cartQuantity} </span>}

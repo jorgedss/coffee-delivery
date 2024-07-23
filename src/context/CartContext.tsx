@@ -6,9 +6,16 @@ export interface CartItem extends CoffeeFlavorsTypes {
   quantity: number
 }
 
+interface LocationProps {
+  city: string
+  state: string
+}
+
 interface CartContextType {
   cartItems: CartItem[]
   cartQuantity: number
+  location: LocationProps
+  getLocationToHeader: (newCity: string, newState: string) => void
   addCoffeeToCart: (coffee: CartItem) => void
   changeQuantityInCart: (
     cartItemId: number,
@@ -35,6 +42,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   })
 
   const cartQuantity = cartItems.length
+  const [location, setLocation] = useState({ city: '', state: '' })
+
+  function getLocationToHeader(newCity: string, newState: string) {
+    setLocation({ city: newCity, state: newState })
+  }
 
   function addCoffeeToCart(coffee: CartItem) {
     const coffeeIsInCart = cartItems.findIndex(
@@ -95,6 +107,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         cartQuantity,
         changeQuantityInCart,
         removeItemOfCart,
+        location,
+        getLocationToHeader,
       }}
     >
       {children}

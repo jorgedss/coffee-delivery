@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { AddressFormStyle } from './styles'
 import {
   UseFormRegister,
   UseFormSetFocus,
   UseFormSetValue,
 } from 'react-hook-form'
+import { CartContext } from '../../../context/CartContext'
 
 interface FormDataTypes {
   bairro: string
@@ -29,6 +30,8 @@ export function AddressForm({
 }: AddressFromProps) {
   const [inputValue, setInputValue] = useState('')
 
+  const { getLocationToHeader } = useContext(CartContext)
+
   function handleChangeInputValue(event: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(event.target.value)
   }
@@ -45,6 +48,7 @@ export function AddressForm({
         setValue('bairro', data.bairro)
         setValue('uf', data.uf)
         setFocus('numero')
+        getLocationToHeader(data.localidade, data.uf)
       })
   }
   return (
