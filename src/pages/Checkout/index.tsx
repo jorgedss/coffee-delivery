@@ -1,5 +1,4 @@
-// import { Bank, CreditCard, CurrencyDollar, MapPin, Money } from 'phosphor-react'
-import { Bank, CreditCard, CurrencyDollar, MapPin } from 'phosphor-react'
+import { CurrencyDollar, MapPin } from 'phosphor-react'
 import {
   AddressContainer,
   ConfirmButton,
@@ -9,19 +8,18 @@ import {
   OrderContainer,
   OrderContainerTitle,
   CoffeesSelecteds,
-  PaymentChoice,
-  PaymentChoiceButton,
   PaymentContainer,
   ValuesContainer,
 } from './styles'
 import { defaultTheme } from '../../styles/themes/default'
-import { Order } from './Orders'
+import { Order } from './Components/Orders'
 import { useContext } from 'react'
 import { CartContext, CartItem } from '../../context/CartContext'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import * as zod from 'zod'
-import { AddressForm } from '../Checkout/AddressForm/index'
+import { AddressForm } from './Components/AddressForm/index'
+import { PaymentChoice } from './Components/PaymentChoice'
 
 const confirmOrderFormValidationSchema = zod.object({
   bairro: zod.string(),
@@ -95,47 +93,7 @@ export function Checkout() {
               </div>
             </header>
 
-            <PaymentChoice>
-              <PaymentChoiceButton>
-                <input
-                  type="radio"
-                  id="credit"
-                  value="Cartão de crédito"
-                  {...register('payment')}
-                />
-                <label htmlFor="credit">
-                  <CreditCard size={16} color={defaultTheme.purple} />
-                  CARTÃO DE CRÉDITO
-                </label>
-              </PaymentChoiceButton>
-
-              <PaymentChoiceButton>
-                <input
-                  type="radio"
-                  id="debit"
-                  value="Cartão de débito"
-                  {...register('payment')}
-                />
-                <label htmlFor="debit">
-                  <Bank size={16} color={defaultTheme.purple} />
-                  CARTÃO DE DÉBITO
-                </label>
-              </PaymentChoiceButton>
-
-              <PaymentChoiceButton>
-                <input
-                  type="radio"
-                  id="money"
-                  value="Dinheiro"
-                  {...register('payment')}
-                />
-                <label htmlFor="money">
-                  <CurrencyDollar size={16} color={defaultTheme.purple} />
-                  DINHEIRO
-                </label>
-              </PaymentChoiceButton>
-              {}
-            </PaymentChoice>
+            <PaymentChoice register={register} />
           </PaymentContainer>
         </FormContainer>
 
@@ -161,7 +119,7 @@ export function Checkout() {
             <div className="total">
               Total
               <span>
-                R${' '}
+                R$
                 {(totalPrice(cartItems) + 3.5)
                   .toFixed(2)
                   .toString()

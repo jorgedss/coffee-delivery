@@ -5,9 +5,9 @@ import {
   UseFormSetFocus,
   UseFormSetValue,
 } from 'react-hook-form'
-import { CartContext } from '../../../context/CartContext'
+import { CartContext } from '../../../../context/CartContext'
 
-interface FormDataTypes {
+export interface FormDataTypes {
   bairro: string
   cep: string
   cidade: string

@@ -5,7 +5,6 @@ export const Container = styled.div`
   align-items: center;
   padding: 8px 4px 32px;
   justify-content: space-between;
-  position: relative;
 
   border-bottom: 1px solid ${(props) => props.theme.button};
 
@@ -39,7 +38,6 @@ export const Controls = styled.div`
 
   div {
     display: flex;
-    //width: 100%;
     gap: 8px;
   }
 `
