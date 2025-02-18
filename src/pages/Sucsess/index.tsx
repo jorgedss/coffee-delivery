@@ -11,7 +11,6 @@ interface LocationType {
 
 export function Sucsess() {
   const { state } = useLocation() as LocationType
-  console.log(state)
 
   return (
     <Container>

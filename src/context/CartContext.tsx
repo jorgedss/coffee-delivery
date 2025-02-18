@@ -22,6 +22,7 @@ interface CartContextType {
     action: 'increment' | 'decrement',
   ) => void
   removeItemOfCart: (cartItemId: number) => void
+  clearCart: () => void
 }
 interface CartContextProviderProps {
   children: ReactNode
@@ -94,6 +95,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
     setCartItems(newCart)
   }
+  function clearCart() {
+    setCartItems([]) // Zera o carrinho
+    localStorage.removeItem(COFFEE_LOCAL_STORAGE_KEY) // Remove o carrinho do localStorage
+  }
 
   useEffect(() => {
     localStorage.setItem(COFFEE_LOCAL_STORAGE_KEY, JSON.stringify(cartItems))
@@ -109,6 +114,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         removeItemOfCart,
         location,
         getLocationToHeader,
+        clearCart,
       }}
     >
       {children}

@@ -40,7 +40,7 @@ export function Checkout() {
   const { register, handleSubmit, setValue, setFocus } =
     useForm<ConfirmOrderData>()
 
-  const { cartItems } = useContext(CartContext)
+  const { cartItems, clearCart } = useContext(CartContext)
 
   function totalPrice(cartItem: CartItem[]) {
     let totalSum = 0
@@ -128,7 +128,9 @@ export function Checkout() {
             </div>
           </ValuesContainer>
 
-          <ConfirmButton type="submit">CONFIRMAR PEDIDO</ConfirmButton>
+          <ConfirmButton type="submit" onClick={() => clearCart()}>
+            CONFIRMAR PEDIDO
+          </ConfirmButton>
         </OrderContainer>
       </GeneralContainer>
     </form>
