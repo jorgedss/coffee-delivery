@@ -71,5 +71,4 @@ https://github.com/user-attachments/assets/b1f96309-9a12-44f4-bd3a-427aec7dd68d
 
 ---
 
-Feito com ❤️ por [Jorge](https://github.com/jorgedss)
 
